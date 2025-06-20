@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Home - Face Recognition Attendance{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+  <div class="card shadow-lg p-5 text-center" style="max-width: 480px; width: 100%;">
+    <img src="https://cdn-icons-png.flaticon.com/512/3062/3062634.png" alt="Logo" width="80" class="mb-3 logo-animate">
+    <h1 class="mb-3 fw-bold">Face Recognition Attendance</h1>
+    <p class="mb-4 text-muted">A modern, secure, and touchless attendance system using advanced face recognition technology. Register users, mark attendance, and manage records with ease—all from your browser.</p>
+    <div class="d-grid gap-3">
+      <a href="/register" class="btn btn-primary btn-lg"><i class="fa fa-user-plus me-2"></i>Register New User</a>
+      <a href="/attendance" class="btn btn-success btn-lg"><i class="fa fa-check-circle me-2"></i>Mark Attendance</a>
+      <a href="/records" class="btn btn-info btn-lg"><i class="fa fa-list me-2"></i>View Attendance Records</a>
+      <a href="/admin" class="btn btn-dark btn-lg"><i class="fa fa-lock me-2"></i>Admin Panel</a>
+    </div>
+  </div>
+</div>
+{% endblock %} 

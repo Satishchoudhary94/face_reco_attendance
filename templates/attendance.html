@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Attendance - Face Recognition Attendance{% endblock %}
+{% block content %}
+<div class="row justify-content-center align-items-center" style="min-height: 60vh;">
+  <div class="col-lg-10 col-md-12">
+    <div class="card shadow-lg p-4" style="max-width: 700px; width: 100%;">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-6 text-center">
+          <video id="video" style="max-width:100%;height:auto;" width="320" height="240" autoplay class="border rounded mb-3"></video>
+          <canvas id="canvas" width="320" height="240" style="display:none;max-width:100%;height:auto;" class="border rounded"></canvas>
+        </div>
+        <div class="col-md-6 px-4">
+          <h2 class="mb-4 text-center fw-bold"><i class="fa fa-check-circle me-2"></i>Mark Attendance</h2>
+          {% if matched_name %}
+            {% if already_marked %}
+              <div class="alert alert-warning text-center">
+                <h4>Attendance already marked for {{ matched_name }} today!</h4>
+                {% if matched_image %}
+                  <img src="/known_faces/{{ matched_image }}" alt="{{ matched_name }}" class="img-thumbnail mt-2" width="160">
+                {% endif %}
+              </div>
+            {% else %}
+              <div class="alert alert-success text-center">
+                <h4>Welcome, {{ matched_name }}!</h4>
+                {% if matched_image %}
+                  <img src="/known_faces/{{ matched_image }}" alt="{{ matched_name }}" class="img-thumbnail mt-2" width="160">
+                {% endif %}
+                <div class="mt-2">Your attendance has been marked.</div>
+              </div>
+            {% endif %}
+          {% endif %}
+          <form id="attendance-form" method="post">
+            <div class="mb-3 text-center">
+              <div id="spinner" class="d-none">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Processing...</span>
+                </div>
+                <div>Processing attendance...</div>
+              </div>
+            </div>
+            <input type="hidden" id="face_image" name="face_image">
+          </form>
+          <div class="text-center text-muted mt-3">Please look at the camera. Attendance will be marked automatically.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="/static/attendance.js"></script>{% endblock %} 
